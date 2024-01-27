@@ -26,12 +26,24 @@ int main() {
 		switch (action)
 		{
 		case '+': summ(first_num, two_num); break;
-		case '-': sub(first_num, two_num); break;
+		case '-': 
+			
+			sub(first_num, two_num); break;
 		case '*': multiplication(first_num, two_num); break;
-		case '/': division(first_num, two_num); break;
-
-		default:
+		case '/': 
+			try
+			{
+				division(first_num, two_num); break;
+			}
+			catch (int e)
+			{
+				if (e == 1) {
+					cout << "\033[1;31mDivision by 0 is not allowed\033[0m" << endl;
+				}
+			}
 			break;
+		default:
+			cout << "\033[1;31mAction not recognized\033[0m" << endl;
 		}
 	}
 	return 0;
@@ -50,5 +62,8 @@ void multiplication(float num1, float num2) {
 }
 
 void division(float num1, float num2) {
-	cout << num1 << " / " << num2 << " = " << (num1 / num2) << endl;
+	if (num2 == 0) throw 1;
+	else {
+		cout << num1 << " / " << num2 << " = " << (num1 / num2) << endl;
+	}
 }
